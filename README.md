@@ -12,19 +12,19 @@ Below are the instructions to copy of the project up and running on your local m
 
 2. Gnuplot tool for graph plotting.
 
-Note: Below id for Mac users only, please follow http://www.gnuplot.info/
+Note: Below command is for Mac users only, please follow http://www.gnuplot.info/ for linux/Ubuntu installation
 ```
 brew install gnuplot
 ```
 
-3. As part of this project, we must install required python packages. Please review requirement.txt file and install all python dependencies via pip.
+3. We must install required python packages, please review requirement.txt file and install all python dependencies via pip.
 
 ```
 git clone https://github.com/yadavj795/ripple-assignment.git
 cd ripple-assignment
 pip install -r requirements.txt
 ```
-4. We are also using LelvelDB key-value data store in our application, therefore, please make sure we have leveldb install on the node.
+4. We are also leveraging LelvelDB key-value data store in our application, therefore, please make sure we have leveldb install on the node.
 
    Note: Below step is for MacOS users only, please follow https://computingforgeeks.com/how-to-install-leveldb-on-ubuntu-18-04-ubuntu-16-04/ for linux         installation
 ```
