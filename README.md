@@ -58,6 +58,8 @@ Note: Please run this script for few minutes so that we can get enough dataset f
    ```
 This will create a graph UI window like below.
 
+![Alt text](https://github.com/yadavj795/ripple-assignment/raw/master/Screen%20Shot%202020-08-07%20at%203.52.19%20PM.png "Graph")
+
 
 End with an example of getting some data out of the system or using it for a little demo
 
