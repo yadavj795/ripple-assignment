@@ -26,7 +26,7 @@ Note: Below command is for Mac users only, please follow http://www.gnuplot.info
    ```
 4. We are also leveraging LevelDB key-value data store in our application, therefore, please make sure we have leveldb install on the node.
 
-   Note: Below step is for MacOS users only, please follow https://computingforgeeks.com/how-to-install-leveldb-on-ubuntu-18-04-ubuntu-16-04/ for linux         installation
+Note: Below step is for MacOS users only, please follow https://computingforgeeks.com/how-to-install-leveldb-on-ubuntu-18-04-ubuntu-16-04/ for linux         installation
    ```
    brew install leveldb
    ```
@@ -63,17 +63,17 @@ End with an example of getting some data out of the system or using it for a lit
 
 ### Q&A
 
-# 1.How does your script work?.
-# Answer: 
+### 1.How does your script work?.
+### Answer: 
 
 
-# 2.How did you decide on your polling interval?
-# Answer: 
+### 2.How did you decide on your polling interval?
+### Answer: 
 
 
-# 3.What do the results tell you?
-# Answer: 
+### 3.What do the results tell you?
+### Answer: 
 
 
-# 4.What might explain the variation in time between new ledgers? (this description of the consensus algorithm may help you: https://developers.ripple.com/consensus-principles-and-rules.html)
-# Answer: 
+### 4.What might explain the variation in time between new ledgers? (this description of the consensus algorithm may help you: https://developers.ripple.com/consensus-principles-and-rules.html)
+### Answer: 
