@@ -65,19 +65,24 @@ End with an example of getting some data out of the system or using it for a lit
 
 #### 1.How does your script work?.
 #### Answer: 
-This script is using ripple python SDK to connect with ripple node. Once connected, we are calling rippled RPC.server_info() method to pull latest information on the current ledger. This result set then converted from dict to json object for further parsing, afterwards we are fetching ledger sequence number from json object and calculating current time along with that. We then storing this ledger seq number and corresponding timestamp in a levelDb data store, this leveldb store has seq field as a key and timestamp as an value. By doing this we will make sure that our dataset doesn't contain duplicates sequence number instead will only update the timestamp for the same key if it exist as RPC.server_info() method could return same sequence every time unless next ledger sequence is generated during poll time, these whole steps are happening inside method called get_server_info().  Afterwards, we are pulling all the unique keys/values and loading into a flat file using method flat_file_writer(). 
+This script is using ripple python SDK to connect with ripple node. Once connected, we are calling rippled RPC.server_info() method to pull latest information on the current ledger. This result set then converted from dict to json object for further parsing, afterwards we are fetching ledger sequence number from json object and calculating current time along with that. 
+
+We then storing this ledger seq number and corresponding timestamp in a levelDb data store, this leveldb store has seq field as a key and timestamp as an value. By doing this we will make sure that our dataset doesn't contain duplicates sequence number instead will only update the timestamp for the same key if it exist as RPC.server_info() method could return same sequence every time unless next ledger sequence is generated during poll time, these whole steps are happening inside method called get_server_info(). Afterwards, we are pulling all the unique keys/values and loading into a flat file using method flat_file_writer(). 
 
 Method dict_mean() does all the metric calculation for min, max and avg ledger validation time taken, we are using python dictionary to store the last_close.converge_time_s field which has actually value of ledger closer time. We are dynamically storing all these info for each ledger and calculating min, max and avg metrics(using numpy).
 
 
 ### 2.How did you decide on your polling interval?
 ### Answer: 
-
+While testing the application I found out that the average ledger validation/close time was around 3 seconds, however, there were some variances noticed as well.
+Also, reducing poll time to less than 3 seconds was causuing duplicate sequence numbers recorded and if that was more than 3 secs then we were seeing missing sequence number in the output. Therefore, I decided to introduce LevelDB key/value store which helped to tackle these issues, now we can use even small poll time i.e. 1 sec which will make sure that we won't have missing sequence number and leveldb will keep the uniqueness of sequence keys and it will be a low latency output application.
 
 
 ### 3.What do the results tell you?
 ### Answer: 
+Results illustrate that the average ledger validation/closer time is around 3 secs, however, there were instances where ledger took more time to close this ladger i.e. 4+ secs.
 
 
 ### 4.What might explain the variation in time between new ledgers? (this description of the consensus algorithm may help you: https://developers.ripple.com/consensus-principles-and-rules.html)
 ### Answer: 
+There could be several reasons due to which new ledgers time varies time to time, one of the major cause is Byzantine failures where agreement could not be completed within time between netowork participants. Failures like hardware failures, communication failures, and even dishonest participants are few causes of the delay. Other cause of deplay could be due to network congestion and failure of consensus, though consensus round is much less likely to fail because disagreements are resolved in the consensus process and only remaining disagreements can cause a failure.
