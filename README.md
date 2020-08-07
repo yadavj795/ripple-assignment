@@ -26,7 +26,7 @@ Note: Below command is for Mac users only, please follow http://www.gnuplot.info
    ```
 4. We are also leveraging LevelDB key-value data store in our application, therefore, please make sure we have leveldb install on the node.
 
-Note: Below step is for MacOS users only, please follow https://computingforgeeks.com/how-to-install-leveldb-on-ubuntu-18-04-ubuntu-16-04/ for linux         installation
+   Note: Below step is for MacOS users only, please follow https://computingforgeeks.com/how-to-install-leveldb-on-ubuntu-18-04-ubuntu-16-04/ for linux           installation
    ```
    brew install leveldb
    ```
@@ -35,7 +35,7 @@ Note: Below step is for MacOS users only, please follow https://computingforgeek
 
 Below are the steps to run the python application which will connect to Ripple XRP ledger and fetch required information and ingest data into LevelDB. Then, it will pull all the key values from it and add into a flat data file.
 
-1. Run ledger_info.py
+1. Run ledger_info.py python script
 
    ```
    cd ripple-assignment
@@ -47,7 +47,7 @@ Once we run above command, we will start seeing ledger validation timings i.e. m
    (base) jyadav-mbp:ripple-assignment jyadav$ python ledger_info.py 
    Ledger Validation Time  => Maximum Value: 3.01 , Minimum Value: 2.02 , Avarage Value: 2.92
    ```
-This stdout ouptut will keep updating every second and values will be refreshed.
+The stdout of this script will keep updating every second and values will be refreshed.
 
 Note: Please run this script for few minutes so that we can get enough dataset for graph plotting. Then we can simply do CTL+C to kill the python program
 
@@ -63,8 +63,8 @@ End with an example of getting some data out of the system or using it for a lit
 
 ### Q&A
 
-### 1.How does your script work?.
-### Answer: 
+#### 1.How does your script work?.
+#### Answer: 
 
 
 ### 2.How did you decide on your polling interval?
