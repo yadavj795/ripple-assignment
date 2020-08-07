@@ -1,30 +1,63 @@
-# Project Title
+# Realtime XRP ledger tracking
 
-One Paragraph of project description goes here
+Created this project to demostrate how easy it is to connect with XRP ledger and perform some realtime analysis using ripple python SDK.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+Below are the instructions to copy of the project up and running on your local machine for testing purposes.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+1. Python3+
 
+2. Gnuplot tool for graph plotting.
+
+Note: Below id for Mac users only, please follow http://www.gnuplot.info/
 ```
-Give examples
-```
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
+brew install gnuplot
 ```
 
-And repeat
+3. As part of this project, we must install required python packages. Please review requirement.txt file and install all python dependencies via pip.
+
+```
+git clone https://github.com/yadavj795/ripple-assignment.git
+cd ripple-assignment
+pip install -r requirements.txt
+```
+4. We are also using LelvelDB key-value data store in our application, therefore, please make sure we have leveldb install on the node.
+
+   Note: Below step is for MacOS users only, please follow https://computingforgeeks.com/how-to-install-leveldb-on-ubuntu-18-04-ubuntu-16-04/ for linux         installation
+```
+brew install leveldb
+```
+
+### Running Application
+
+Below are the steps to run the python application which will connect to Ripple XRP ledger and fetch required information and ingest data into LevelDB. Then, it will pull all the key values from it and add into a flat data file.
+
+1. Run ledger_info.py
+
+```
+cd ripple-assignment
+python ledger_info.py
+```
+Once we run above command, we will start seeing ledger validation timings i.e. min,max and avg time taken metrics.
+
+```
+(base) jyadav-mbp:ripple-assignment jyadav$ python ledger_info.py 
+Ledger Validation Time  => Maximum Value: 3.01 , Minimum Value: 2.02 , Avarage Value: 2.92
+```
+This stdout ouptut will keep updating every second and values will be refreshed.
+
+Note: Please run this script for few minutes so that we can get enough dataset for graph plotting. Then we can simply do CTL+C to kill the python program
+
+2. This application also created an flat data file called "/tmp/ledger_info.dat". Now we use this data file to plot the graph, we will use existing plot file sample-plot.p and simply run it.
+
+```
+gnuplot -p sample-plot.p
+```
+This will create a graph UI window like below.
+
 
 ```
 until finished
@@ -32,56 +65,19 @@ until finished
 
 End with an example of getting some data out of the system or using it for a little demo
 
-## Running the tests
+### Q&A
 
-Explain how to run the automated tests for this system
+# 1.How does your script work?.
+# Answer: 
 
-### Break down into end to end tests
 
-Explain what these tests test and why
+# 2.How did you decide on your polling interval?
+# Answer: 
 
-```
-Give an example
-```
 
-### And coding style tests
+# 3.What do the results tell you?
+# Answer: 
 
-Explain what these tests test and why
 
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+# 4.What might explain the variation in time between new ledgers? (this description of the consensus algorithm may help you: https://developers.ripple.com/consensus-principles-and-rules.html)
+# Answer: 
