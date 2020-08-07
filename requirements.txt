@@ -1,0 +1,3 @@
+numpy
+plyvel
+python-ripple-lib
