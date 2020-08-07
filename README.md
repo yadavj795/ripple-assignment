@@ -80,7 +80,7 @@ Also, reducing poll time to less than 3 seconds was causuing duplicate sequence 
 
 ### 3.What do the results tell you?
 ### Answer: 
-Results illustrate that the average ledger validation/closer time is around 3 secs, however, there were instances where ledger took more time to close this ladger i.e. 4+ secs.
+Results illustrate that the average ledger validation/closer time is around 3 secs, however, there were instances where network took more time to close the ledger i.e. 4+ secs.
 
 
 ### 4.What might explain the variation in time between new ledgers? (this description of the consensus algorithm may help you: https://developers.ripple.com/consensus-principles-and-rules.html)
